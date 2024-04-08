@@ -82,15 +82,6 @@ input("press key.enter to contiinueeeeeee")
 print("welcome to YAY pyth-linux.\nY = yolo\nA= autism\nY = yeet")
 
 ihateicks = input("Hello user,we will kindly ask you to say your temp username \nInsert here: ")
-if ihateicks == "hyu":
-    print("r u the real hyu?")
-    a = input("what is your bff name? \n")
-    if a == best_friend_name:
-            print("k u hyu")
-    else:
-          while True:
-                wb.open("hyuuwu.tech")
-
 
 print("HEYYYY", ihateicks, "WE MISSED YOU SO MUCH")
 kk = input("want to have an passw? Yes(y) No(n)")

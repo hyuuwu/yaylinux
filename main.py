@@ -153,6 +153,11 @@ while True:
           stream.download() 
           print("Video downloaded!")
 
+     if terminal == "opnytb":
+          sex = input("url here: ")
+          wb.open(sex)
+
+
 
 
 

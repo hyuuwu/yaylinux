@@ -5,4 +5,5 @@ an awful copy of linux made on python
 - a brain
 - a pc
 - python
-- pytube
+- pygame
+- at least 1024kb of ram

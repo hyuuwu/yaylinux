@@ -7,10 +7,13 @@ import install
 import subprocess as sub
 import sys
 import platform
-from playsound import playsound
+import pygame
 
-chime = "chime.mp3"
-signoff = "signoff.mp3"
+pygame.init()
+
+
+chime = ""
+
 
 def run(app):
     sub.run([app])
@@ -31,9 +34,6 @@ def is_first_run():
 
 
 
-def apt():
-     smthsmth = input("wut app u want")
-     print("list: \nprint: print smth\ngoogle: opens googles ")
 
 
 
@@ -59,6 +59,71 @@ def cd(new_path):
 
 
 
+def run_subprocess(shell_cmd):
+
+    try:
+        # prefer shell=False style when possible; allow shell-like string for convenience
+        if platform.system() == "Windows":
+            completed = sub.run(["powershell", "-Command", shell_cmd], capture_output=True, text=True)
+        else:
+            completed = sub.run(shell_cmd, shell=True, capture_output=True, text=True)
+        if completed.returncode == 0:
+            print(completed.stdout.strip())
+        else:
+            print("Command returned nonzero status.")
+            print(completed.stderr.strip())
+        return completed.returncode
+    except Exception as e:
+        print("Error running command:", e)
+        return -1
+
+
+def execute_command(command):
+    if command == "kanye":
+        wb.open("https://www.youtube.com/watch?v=wuO4_P_8p-Q")
+        print("peak")
+    elif command == "spaghetto":
+        wb.open("https://www.youtube.com/watch?v=DgxPNW2iPQM")
+        print("spaghetto smosh")
+    elif command == "ytb":
+        print("placeholder")
+    elif command == "ls":
+        list_files()
+    elif command == "cd":
+        directory = input("Enter the directory path: ").strip()
+        cd(directory)
+    elif command == "exit":
+        print("Exiting YAYLinux...")
+        my_sound2 = pygame.mixer.Sound('signoff.mp3')
+        my_sound2.play()
+        time.sleep(4)
+        sys.exit(0)
+    elif command == "launcher":
+        app = input("What app do you want to install?\n:")
+        install.install(app)
+    elif command == help:
+        print("we aint helpin- jk. LIST OF COMMANDS:\nhelp: help.\nkanye: kanye song\nspaghetto: sekreti\nexit: exit\ncd: cd\nls: ls\nvim: rip ur pc\nytb: YOUTUBE DOWNLOADER YAHOO!\nopnytb: opens an url,but we want u to open yt tho\nhydra: opens its github page\nlauncher:wip\ncalc:wip")
+    elif command == "vim":
+        print("how to crash ur pc")
+        owo = uwu.randint(1, 5)
+        if owo == 4:
+            while True:
+                wb.open("open.spotify.com")
+        else:
+            sys.exit("fuh vim")
+    elif command == "source":
+        print("you can view our source code here!")
+        wb.open("https://github.com/hyuuwu/yaylinux")
+    elif command == "whoamiyay":
+        print(ihateicks)
+    elif command == "calc":
+        firstn = input("first number")
+        secondn = input("second number")
+        print(int(firstn) + int(secondn))
+        print("thanks 4 using")
+
+    else:
+        run_subprocess(command)
 
 
 
@@ -76,12 +141,10 @@ def cd(new_path):
 
 
 
+my_sound = pygame.mixer.Sound('chime.mp3')
 
 
-
-
-
-playsound(chime, True)
+my_sound.play()
 print("IBH (c)2010-2025 \nAll rights reserved ;)\n256 mb RAM : ok \n1.66ghz CPU: ok \n1000mb HDD : ok")
 print(".")
 time.sleep(2)
@@ -135,83 +198,5 @@ else:
 
 while True:
      terminal = input(f"{ihateicks}@{hostnameeee} $ ~/")
-     
-     if terminal == "help":
-      print("we aint helpin- jk. LIST OF COMMANDS:\nhelp: help.\nkanye: kanye song\nspaghetto: sekreti\nexit: exit\ncd: cd\nls: ls\nvim: rip ur pc\nytb: YOUTUBE DOWNLOADER YAHOO!\nopnytb: opens an url,but we want u to open yt tho\nhydra: opens its github page\nlauncher:wip\ncalc:wip")
-      if terminal == "kanye":
-          wb.open("https:/ /youtube.com/watch?v=wuO4_P_8p-Q&si=1j47jLi9GMSNRFsI")
-          print("fire")
-     if terminal == "spaghetto":
-          print("spaghetto smosh")
-          wb.open("https://www.youtube.com/watch?v=DgxPNW2iPQM")
-          print("orochinho")
-          print("hidden command lmaoooooooooooooooooooo")
-     if terminal == "exit":
-          print("Thanks For Using!")
-          playsound(signoff, True)
-          break
+     execute_command(terminal)
 
-
-
-
-     if terminal == "ls":  # Use a common 'ls' command for listing
-          list_files()
-     
-     if terminal == "cd":
-          j = input("wut dir?: ")
-          cd(j)
-          #this shit crashed python
-     if terminal == "vim":
-          print("how to crash ur pc")
-          owo = uwu.randint(1,5)
-          if owo == 4:
-              while True:
-                  wb.open("open.spotify.com")
-          else:
-              break
-
-     if terminal == "ytb":
-          video_url = input("input ur video url (VALID PLZ)") # Your video URL
-          yt = YouTube(video_url)
-
-          stream = yt.streams.get_highest_resolution()  # Or choose a specific format
-          stream.download() 
-          print("Video downloaded!")
-
-     if terminal == "opnytb":
-          sex = input("url here: ")
-          wb.open(sex)
-
-     if terminal == "hydra":
-          wb.open("https://github.com/hydralauncher/hydra")
-
-     if terminal == "launcher":
-         abcd = input(f" hey user {ihateicks}, do you wanna install an app? (Y/n)")
-         if abcd == "n":
-             print("bet")
-         else:
-             efgh = input("what app do you want to install? \n:")
-             install.install(efgh)
-
-     if terminal == "calc":
-         firstn = input("first number")
-         secondn = input("second number")
-         print(int(firstn) + int(secondn))
-         print("thanks 4 using")
-
-
-
-     if terminal == "smth":
-          print("gangsta")
-
-
-          
-     else:
-         if platform.system == "Linux":
-             klmn = sub.run(["sh", "-c", terminal])
-         else:
-            j = sub.run(["powershell", "-Command", terminal])
-            if j.returncode == 0:
-                print("app run")
-            else:
-                print("oops")

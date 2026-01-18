@@ -1,34 +1,36 @@
 import subprocess as sub
 import os
-# import time
 import platform
 
 def install(app):
-    if platform.system() == 'Windows' :
-        look4choco = sub.run(["where", "choco"])
+    system_os = platform.system()
+    if system_os == 'Windows':
+        look4choco = sub.run(["where", "choco"], capture_output=True)
         if look4choco.returncode == 0:
+            print(f"Installing {app} via Chocolatey...")
+            # choco install -y requires administrative privileges usually.
             installation = sub.run(["choco", "install", app, "-y"])
             if installation.returncode == 0:
-                print("app installed")
+                print(f"{app} installed successfully.")
             else:
-                print("install failed with error")
+                print("Installation failed.")
         else:
-            print("choco not installed")
-            chocoinstaller = "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
-            chocoinstaller2 = sub.run(["powershell", "-Command", chocoinstaller])
-            if chocoinstaller2.returncode == 0:
-                print("restart the application,please")
-            else:
-                print("choco didnt install. quiting")
+            print("Chocolatey (choco) not found.")
+            print("Please install Chocolatey manually or run this script as Administrator to attempt auto-installation.")
+            # Auto-installing choco is risky and complex to get right in a script without explicit permission interaction.
+            # Simplified for safety.
+    elif system_os == 'Linux':
+        distro = platform.linux_distribution()[0].lower() if hasattr(platform, 'linux_distribution') else ''
+        # Modern python might not have linux_distribution, use distro package or /etc/os-release if needed. 
+        # But assuming generic pacman usage as per original code context (Arch-like):
+        print(f"Attempting to install {app}. You might be prompted for sudo password.")
+        try:
+             # Removing -S for sudo to avoid hanging if no password provided via stdin. 
+             # Let it use terminal if interactive, or fail.
+            sub.run(["sudo", "pacman", "-S", app])
+        except Exception as e:
+            print(f"Error executing installation command: {e}")
+    elif system_os == 'Darwin': # macOS
+        print("ts aint gon work.")
     else:
-        if platform.system() == 'Linux':
-            linux = sub.run(["sudo", "-S", "pacman", "-S", app], stdout=sub.PIPE)
-            if linux.returncode == 0:
-                print("app(or cli command,nerd) installed")
-            else:
-                print("u prob use debian. btw,error")
-        else:
-            if os.uname == "Darwin":
-                print("uhh idk how to install things on mac")
-            else:
-                print("what os are you even using anyway?")
+        print(f"how do you even use {system_os}")

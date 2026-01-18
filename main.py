@@ -9,6 +9,8 @@ import littu as lil
 import pyfiglet
 import argparse
 import install
+import getpass
+
 
 parser = argparse.ArgumentParser(
     description="Deletes all the old config files. its like a factory reset"
@@ -178,7 +180,7 @@ def execute_command(command):
 play_audio("q.wav")
 
 print(
-    "IBH (c)2010-2025 \nAll rights reserved ;)\n256 mb RAM : ok \n1.66ghz CPU: ok \n1000mb HDD : ok"
+    "IBH (c)2010-2026 \nAll rights reserved ;)\n512 mb RAM : ok \n2.00ghz CPU: ok \n1000mb HDD : ok"
 )
 print(".")
 time.sleep(0.5)
@@ -206,12 +208,12 @@ if is_first_run():
         f.write(ihateicks)
 
     print("HEYYYY", ihateicks, "WE MISSED YOU SO MUCH")
-    ikendrick = input("create a password: ")
+    ikendrick = getpass.getpass("create a password: ")
     lil.crypt(ikendrick, "password")
 
-    heyhelp = input("confirm password: ")
+    heyhelp = getpass.getpass("confirm password: ")
     if heyhelp == ikendrick:
-        print("Password confirmed.")
+        print("Right pass twin")
     else:
         print("Passoprd wrong fam")
         print(f"FYI, the password you set is {ikendrick}.")
@@ -232,7 +234,7 @@ else:
         with open("password", "r") as p_file:
             verify = lil.decrypt("password")
 
-        verifypass = input(
+        verifypass = getpass.getpass(
             f"Hello {ihateicks}, Welcome back to YAYLinux! whats your password?\n"
         )
         if verifypass == verify:

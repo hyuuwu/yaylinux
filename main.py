@@ -10,7 +10,7 @@ import pyfiglet
 import argparse
 import install
 import getpass
-
+import bcrypt
 
 parser = argparse.ArgumentParser(
     description="Deletes all the old config files. its like a factory reset"
@@ -209,7 +209,10 @@ if is_first_run():
 
     print("HEYYYY", ihateicks, "WE MISSED YOU SO MUCH")
     ikendrick = getpass.getpass("create a password: ")
-    lil.crypt(ikendrick, "password")
+    password_bytes = ikendrick.encode('utf-8')
+    hash = bcrypt.hashpw(password_bytes, bcrypt.gensalt())
+    with open ("password", "wb") as f:
+        f.write(hash)
 
     heyhelp = getpass.getpass("confirm password: ")
     if heyhelp == ikendrick:
@@ -231,13 +234,15 @@ else:
             ihateicks = u_file.read().strip()
 
     if os.path.exists("password"):
-        with open("password", "r") as p_file:
-            verify = lil.decrypt("password")
+        with open("password", "rb") as p_file:
+            passwd = p_file.read().strip()
+
 
         verifypass = getpass.getpass(
             f"Hello {ihateicks}, Welcome back to YAYLinux! whats your password?\n"
         )
-        if verifypass == verify:
+        pas = verifypass.encode('utf-8')
+        if bcrypt.checkpw(pas, passwd):
             print("Welcome back!")
         else:
             print("Wrong password.")

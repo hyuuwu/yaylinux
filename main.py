@@ -24,6 +24,7 @@ if args.facreset:
     os.remove("user")
     print("facresetted")
 
+
 try:
     from playsound3 import playsound
 except ImportError:
@@ -42,10 +43,9 @@ chime = ""
 
 def run(app):
     sub.run([app])
-
+#variables...?
 
 CONFIG_FILE = "dontdeletethis.file"
-
 
 def is_first_run():
     if not os.path.exists(CONFIG_FILE):
@@ -145,7 +145,7 @@ def execute_command(command):
         install.install(app)
     elif command == "help":
         print(
-            "LIST OF COMMANDS:\nhelp: Show this help.\nkanye: Play Kanye song\nspaghetto: Secret video\nexit: Exit YAYLinux\ncd: Change directory\nls: List files\nvim: Text editor (Joke)\nytb: YouTube downloader placeholder\nopnytb: Opens YouTube\nlauncher: Install apps\ncalc: Calculator\nsource: View source code\nwhoamiyay: Show current user\n audioplayer: plays audio files"
+            "LIST OF COMMANDS:\nhelp: Show this help.\nkanye: Play Kanye song\nspaghetto: Secret video\nexit: Exit YAYLinux\ncd: Change directory\nls: List files\nvim: Text editor (Joke)\nytb: YouTube downloader placeholder\nopnytb: Opens YouTube\nlauncher: Install apps\ncalc: Calculator\nsource: View source code\nwhoamiyay: Show current user\n audioplayer: plays audio files\nneofetch: Displays computer information"
         )
     elif command == "vim":
         print("imagine vim in the big 26 😭")
@@ -170,9 +170,11 @@ def execute_command(command):
 
     elif command == "audioplayer":
         graduation = input(
-            "whats the audio file you want to play?\n(insert the full path,or, if its in the same folder,just use the file name)\n>"
+            "whats the audio file you want to play?\n(insert the full path,or, if its in the same folder,just use the file name)\n> "
         )
         audi0(graduation)
+    elif command == "neofetch":
+        print(f"Distro: YayLinux v2.5\nUser: {ihateicks}\nHost System: {platform.system()}\nTerminal: YayTerm\nCpu: Intel 8080 With OC\nRam: 512Mb\n(-_-)zzz")
     else:
         run_subprocess(command)
 

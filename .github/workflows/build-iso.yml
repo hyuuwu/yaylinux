@@ -76,7 +76,7 @@ jobs:
         with:
           tag_name: ${{ steps.release_meta.outputs.tag }}
           name: ${{ steps.release_meta.outputs.name }}
-          target_commitish: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || github.sha }}
+          target_commitish: ${{ github.sha }}
           prerelease: ${{ steps.release_meta.outputs.prerelease == 'true' }}
           files: out/*.iso
           generate_release_notes: true

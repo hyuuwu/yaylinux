@@ -1,0 +1,102 @@
+# Base system
+base
+base-devel
+linux
+linux-firmware
+linux-headers
+
+# Bootloader
+grub
+efibootmgr
+os-prober
+
+# archiso internals
+mkinitcpio
+mkinitcpio-archiso
+
+# Network
+networkmanager
+network-manager-applet
+dhcpcd
+iwd
+wireless_tools
+wpa_supplicant
+
+# Filesystem tools
+btrfs-progs
+dosfstools
+e2fsprogs
+exfatprogs
+f2fs-tools
+gptfdisk
+ntfs-3g
+xfsprogs
+
+# Hardware support
+amd-ucode
+intel-ucode
+
+# Shells & terminal
+bash
+zsh
+zsh-completions
+zsh-syntax-highlighting
+terminus-font
+
+# Essential CLI tools
+sudo
+git
+curl
+wget
+rsync
+archinstall
+arch-install-scripts
+glibc
+
+# Text editors
+nano
+vim
+
+# Display server
+xorg-server
+xorg-xinit
+xorg-xrandr
+xf86-video-vesa
+mesa
+
+# GPU drivers
+xf86-video-amdgpu
+xf86-video-ati
+xf86-video-nouveau
+xf86-video-vmware
+xf86-input-libinput
+
+# Desktop environment – XFCE
+xfce4
+xfce4-goodies
+lightdm
+lightdm-gtk-greeter
+
+# Audio
+pipewire
+pipewire-alsa
+pipewire-pulse
+wireplumber
+
+# Browser & apps
+firefox
+thunar
+mousepad
+
+# Fonts
+noto-fonts
+noto-fonts-emoji
+ttf-dejavu
+ttf-liberation
+
+# Miscellaneous live-environment utilities
+memtest86+
+pv
+reflector
+screen
+tmux

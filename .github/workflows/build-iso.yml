@@ -66,8 +66,8 @@ jobs:
             echo "name=YAY Linux ${GITHUB_REF_NAME}" >> "${GITHUB_OUTPUT}"
             echo "prerelease=false" >> "${GITHUB_OUTPUT}"
           else
-            echo "tag=nightly" >> "${GITHUB_OUTPUT}"
-            echo "name=YAY Linux Nightly" >> "${GITHUB_OUTPUT}"
+            echo "tag=nightly-${GITHUB_SHA::7}" >> "${GITHUB_OUTPUT}"
+            echo "name=YAY Linux Nightly ${GITHUB_SHA::7}" >> "${GITHUB_OUTPUT}"
             echo "prerelease=true" >> "${GITHUB_OUTPUT}"
           fi
 
@@ -77,6 +77,6 @@ jobs:
           tag_name: ${{ steps.release_meta.outputs.tag }}
           name: ${{ steps.release_meta.outputs.name }}
           target_commitish: ${{ github.sha }}
-          prerelease: ${{ steps.release_meta.outputs.prerelease == 'true' }}
+          prerelease: ${{ fromJSON(steps.release_meta.outputs.prerelease) }}
           files: out/*.iso
           generate_release_notes: true

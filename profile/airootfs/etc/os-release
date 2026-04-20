@@ -1,0 +1,10 @@
+NAME="YAY Linux"
+PRETTY_NAME="YAY Linux"
+ID=yaylinux
+ID_LIKE=arch
+BUILD_ID=rolling
+ANSI_COLOR="38;2;255;100;0"
+HOME_URL="https://github.com/hyuuwu/yaylinux"
+SUPPORT_URL="https://github.com/hyuuwu/yaylinux/issues"
+BUG_REPORT_URL="https://github.com/hyuuwu/yaylinux/issues"
+LOGO=yaylinux
